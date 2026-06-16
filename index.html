@@ -1,43 +1,80 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Blog</title>
-        <style>
-          header{background-color: #183C63; color: #FFFFFF; text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 16px;
-           
-          }  
-          main{background-color: #FFFFFF ; 
-            COLOR: #183C63;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 19px;
-            
-            
-
-          }
-        img{
-          width: 80px;
-          height: 80px;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Blog Tech</title>
+    <style>
+        /* Configurações gerais da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px; /* Garante respiro em telas de celular */
         }
-        </style>
-    </head>
-    <body>
-        <header>
+
+        /* Cabeçalho do Blog */
+        header {
+            background-color: #183C63;
+            color: #FFFFFF;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px 8px 0 0; /* Arredonda as pontas superiores */
+        }
+
+        /* Conteúdo Principal */
+        main {
+            background-color: #FFFFFF;
+            color: #183C63;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 20px; /* Cria um espaçamento entre a imagem e o texto */
+            align-items: center; /* Alinha verticalmente a imagem com o texto */
+            border-radius: 0 0 8px 8px; /* Arredonda as pontas inferiores */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra suave */
+        }
+
+        /* Estilização da Imagem/Logotipo */
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover; /* Garante que a imagem não distorça */
+            border-radius: 8px; /* Cantos arredondados na imagem */
+        }
+
+        /* Estilização do Post */
+        .artigo-autor {
+            font-weight: bold;
+            color: #555555; /* Um tom um pouco mais suave para o autor */
+            margin: 5px 0;
+        }
+
+        h2 {
+            margin-top: 0; /* Remove o espaço superior padrão do título do post */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
         <h1>Meu blog tech</h1>
         <p>Vou compartilhar conhecimentos sobre tecnologia e programação</p>
-        </header>
-        <main>
-          <img src="Gemini_Generated_Image_24sl2y24sl2y24sl.png" alt="Logotipo para blog de tecnologia e educação mostrando a fusão de um livro aberto com uma lâmpada de circuitos integrados, cercada por ícones de aprendizado e ciência em fundo azul tecnológico.">
+    </header>
+
+    <main>
+        <img src="Gemini_Generated_Image_24sl2y24sl2y24sl.png" alt="Logotipo para blog de tecnologia e educação mostrando a fusão de um livro aberto com uma lâmpada de circuitos integrados, cercada por ícones de aprendizado e ciência em fundo azul tecnológico.">
+        
+        <article>
             <h2>Meu primeiro post</h2>
-            <p>Por: Luciano Bendlin Silva</p>
-            <p>Boas-Vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidade da área de tecnologia.  </p>
-        </main>
+            <p class="artigo-autor">Por: Luciano Bendlin Silva</p>
+            <p>Boas-Vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidade da área de tecnologia.</p>
+        </article>
+    </main>
         
 </body>
 </html>
