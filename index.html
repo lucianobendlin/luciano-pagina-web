@@ -1,4 +1,8 @@
+Aqui está o código completo do seu blog, prontinho e com o título "MEU BLOG TECH" bem grande, imponente e destacado na barra azul.
 
+É só copiar tudo, substituir o conteúdo no seu VS Code e salvar (File > Save):
+
+HTML
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,56 +10,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Blog Tech</title>
     <style>
+        /* Variáveis de Cores para facilitar o Modo Escuro */
+        :root {
+            --bg-body: #f4f6f9;
+            --bg-container: #FFFFFF;
+            --cor-texto-principal: #183C63;
+            --cor-texto-suave: #555555;
+            --bg-header: #183C63;
+            --texto-header: #FFFFFF;
+            --bg-botao-like: #e2e8f0;
+            --sombra: rgba(0, 0, 0, 0.05);
+            --border-comentario: #e2e8f0;
+        }
+
+        /* Cores do Modo Escuro */
+        [data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-container: #1e293b;
+            --cor-texto-principal: #38bdf8;
+            --cor-texto-suave: #94a3b8;
+            --bg-header: #1e293b;
+            --texto-header: #38bdf8;
+            --bg-botao-like: #334155;
+            --sombra: rgba(0, 0, 0, 0.3);
+            --border-comentario: #334155;
+        }
+
         /* Configurações gerais da página */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
+            background-color: var(--bg-body);
+            color: var(--cor-texto-suave);
             margin: 0;
-            padding: 20px; /* Garante respiro em telas de celular */
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Cabeçalho do Blog */
         header {
-            background-color: #183C63;
-            color: #FFFFFF;
+            background-color: var(--bg-header);
+            color: var(--texto-header);
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            border-radius: 8px 8px 0 0; /* Arredonda as pontas superiores */
+            padding: 35px 20px; /* Aumentado para dar mais respiro ao título grande */
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Conteúdo Principal */
-        main {
-            background-color: #FFFFFF;
-            color: #183C63;
+        /* ALTERAÇÃO AQUI: Título Principal aumentado e destacado */
+        header h1 {
+            font-size: 2.8rem; 
+            margin: 0 0 10px 0;
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        /* Botão do Modo Escuro */
+        .btn-theme {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-theme:hover {
+            transform: scale(1.2);
+        }
+
+        /* Container que junta a Main e a Sidebar lado a lado */
+        .conteudo-wrapper {
             max-width: 800px;
             margin: 0 auto;
+            display: table;
+            width: 100%;
+            background-color: var(--bg-container);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px var(--sombra);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Colunas simuladas com table-cell */
+        main {
+            display: table-cell;
+            width: 70%;
             padding: 20px;
-            display: flex;
-            gap: 20px; /* Cria um espaçamento entre a imagem e o texto */
-            align-items: center; /* Alinha verticalmente a imagem com o texto */
-            border-radius: 0 0 8px 8px; /* Arredonda as pontas inferiores */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra suave */
+            vertical-align: top;
+            border-right: 1px solid var(--border-comentario);
+        }
+
+        aside {
+            display: table-cell;
+            width: 30%;
+            padding: 20px;
+            vertical-align: top;
+            background-color: rgba(0,0,0,0.02);
+        }
+
+        /* Layout interno do post (Imagem + Texto) */
+        .post-header {
+            display: table;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .post-img-cell {
+            display: table-cell;
+            width: 90px;
+            vertical-align: top;
+        }
+        .post-title-cell {
+            display: table-cell;
+            vertical-align: top;
+            padding-left: 15px;
         }
 
         /* Estilização da Imagem/Logotipo */
-        img {
+        img.logotipo {
             width: 80px;
             height: 80px;
-            object-fit: cover; /* Garante que a imagem não distorça */
-            border-radius: 8px; /* Cantos arredondados na imagem */
+            object-fit: cover;
+            border-radius: 8px;
         }
+
+        /* Etiquetas/Tags */
+        .tags {
+            margin-bottom: 8px;
+        }
+        .tag {
+            background-color: #183C63;
+            color: white;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .tag.html { background-color: #e34c26; }
+        .tag.css { background-color: #264de4; }
 
         /* Estilização do Post */
         .artigo-autor {
             font-weight: bold;
-            color: #555555; /* Um tom um pouco mais suave para o autor */
+            color: var(--cor-texto-suave);
             margin: 5px 0;
         }
 
-        h2 {
-            margin-top: 0; /* Remove o espaço superior padrão do título do post */
+        /* Títulos secundários */
+        h2, h3 {
+            color: var(--cor-texto-principal);
+            margin-top: 0;
+            transition: color 0.3s;
+        }
+
+        /* Botão de Like Divertido */
+        .btn-like {
+            background-color: var(--bg-botao-like);
+            border: none;
+            padding: 8px 16px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--cor-texto-principal);
+            border-radius: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            transition: all 0.2s ease;
+        }
+        .btn-like:hover {
+            transform: scale(1.05);
+        }
+        .btn-like.liked {
+            background-color: #ffde59;
+            color: #000;
+            animation: pulso 0.3s ease-in-out;
+        }
+
+        @keyframes pulso {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Estilos da Sidebar (Perfil) */
+        .perfil-foto {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            margin: 0 auto 10px auto;
+            text-align: center;
+            line-height: 70px;
+            font-size: 2rem;
+        }
+        .sidebar-secao {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .sidebar-secao p {
+            font-size: 0.9rem;
+        }
+        .redes-sociais a {
+            display: block;
+            color: var(--cor-texto-principal);
+            text-decoration: none;
+            margin: 8px 0;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .redes-sociais a:hover {
+            text-decoration: underline;
+        }
+
+        /* Seção de Comentários */
+        .secao-comentarios {
+            margin-top: 40px;
+            border-top: 2px dashed var(--border-comentario);
+            padding-top: 20px;
+        }
+        .form-comentario input, .form-comentario textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-comentario);
+            border-radius: 4px;
+            background-color: var(--bg-body);
+            color: var(--cor-texto-suave);
+            box-sizing: border-box;
+        }
+        .form-comentario button {
+            background-color: #183C63;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .form-comentario button:hover {
+            background-color: #23568f;
+        }
+        .lista-comentarios {
+            margin-top: 20px;
+        }
+        .comentario-item {
+            background-color: rgba(0,0,0,0.02);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid #183C63;
+        }
+        .comentario-nome {
+            font-weight: bold;
+            color: var(--cor-texto-principal);
+            font-size: 0.9rem;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #94a3b8;
         }
     </style>
 </head>
@@ -64,17 +285,141 @@
     <header>
         <h1>Meu blog tech</h1>
         <p>Vou compartilhar conhecimentos sobre tecnologia e programação</p>
+        <button class="btn-theme" onclick="alternarTema()" title="Alternar tema">🌙</button>
     </header>
 
-    <main>
-        <img src="Gemini_Generated_Image_24sl2y24sl2y24sl.png" alt="Logotipo para blog de tecnologia e educação mostrando a fusão de um livro aberto com uma lâmpada de circuitos integrados, cercada por ícones de aprendizado e ciência em fundo azul tecnológico.">
+    <div class="conteudo-wrapper">
         
-        <article>
-            <h2>Meu primeiro post</h2>
-            <p class="artigo-autor">Por: Luciano Bendlin Silva</p>
-            <p>Boas-Vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidade da área de tecnologia.</p>
-        </article>
-    </main>
+        <main>
+            <article>
+                <div class="post-header">
+                    <div class="post-img-cell">
+                        <img class="logotipo" src="Gemini_Generated_Image_24sl2y24sl2y24sl.png" alt="Logotipo do blog">
+                    </div>
+                    <div class="post-title-cell">
+                        <div class="tags">
+                            <span class="tag html">HTML</span>
+                            <span class="tag css">CSS</span>
+                        </div>
+                        <h2>Meu primeiro post</h2>
+                        <p class="artigo-autor">Por: Luciano Bendlin Silva</p>
+                    </div>
+                </div>
+
+                <p>Boas-Vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidade da área de tecnologia.</p>
+                
+                <button class="btn-like" onclick="darLike()">
+                    <span id="emoji-like">🚀</span> Curtir (<span id="contador-likes">0</span>)
+                </button>
+            </article>
+
+            <div class="secao-comentarios">
+                <h3>Comentários</h3>
+                
+                <div class="form-comentario">
+                    <input type="text" id="comentario-nome" placeholder="Seu nome" required>
+                    <textarea id="comentario-texto" rows="3" placeholder="Deixe seu comentário aqui..." required></textarea>
+                    <button onclick="adicionarComentario()">Enviar Comentário 💬</button>
+                </div>
+
+                <div class="lista-comentarios" id="lista-comentarios">
+                    </div>
+            </div>
+        </main>
+
+        <aside>
+            <div class="sidebar-secao">
+                <div class="perfil-foto">👨‍💻</div>
+                <h3>Sobre o Autor</h3>
+                <p><strong>Luciano Bendlin Silva</strong><br>Estudante de tecnologia apaixonado por código e inovação.</p>
+            </div>
+
+            <div class="sidebar-secao redes-sociais">
+                <h3>Redes Sociais</h3>
+                <a href="https://linkedin.com" target="_blank">🌐 LinkedIn</a>
+                <a href="https://github.com" target="_blank">🐙 GitHub</a>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Desenvolvido por Luciano Bendlin Silva. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Lógica do Botão de Like
+        let likes = 0;
+        let jaDeuLike = false;
+
+        function darLike() {
+            const botao = document.querySelector('.btn-like');
+            const contador = document.getElementById('contador-likes');
+            const emoji = document.getElementById('emoji-like');
+
+            if (!jaDeuLike) {
+                likes++;
+                contador.innerText = likes;
+                botao.classList.add('liked');
+                emoji.innerText = '🔥';
+                jaDeuLike = true;
+            } else {
+                likes--;
+                contador.innerText = likes;
+                botao.classList.remove('liked');
+                emoji.innerText = '🚀';
+                jaDeuLike = false;
+            }
+        }
+
+        // Lógica do Modo Escuro (Dark Mode)
+        function alternarTema() {
+            const body = document.body;
+            const botaoTema = document.querySelector('.btn-theme');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                botaoTema.innerText = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                botaoTema.innerText = '☀️';
+            }
+        }
+
+        // Lógica para Adicionar Comentários Dinamicamente
+        function adicionarComentario() {
+            const nomeInput = document.getElementById('comentario-nome');
+            const textoInput = document.getElementById('comentario-texto');
+            const lista = document.getElementById('lista-comentarios');
+
+            if (nomeInput.value.trim() === '' || textoInput.value.trim() === '') {
+                alert('Por favor, preencha o nome e o comentário!');
+                return;
+            }
+
+            // Criar a estrutura do novo comentário
+            const novoComentario = document.createElement('div');
+            novoComentario.className = 'comentario-item';
+            
+            const nomeDiv = document.createElement('div');
+            nomeDiv.className = 'comentario-nome';
+            nomeDiv.innerText = nomeInput.value;
+
+            const textoP = document.createElement('p');
+            textoP.style.margin = '5px 0 0 0';
+            textoP.innerText = textoInput.value;
+
+            novoComentario.appendChild(nomeDiv);
+            novoComentario.appendChild(textoP);
+            
+            // Adicionar no topo da lista de comentários
+            lista.insertBefore(novoComentario, lista.firstChild);
+
+            // Limpar os campos após enviar
+            nomeInput.value = '';
+            textoInput.value = '';
+        }
+    </script>
         
 </body>
 </html>
